@@ -2,7 +2,7 @@
 
 ***
 
-## <strong>NOTE</strong>: if you just need one folder from this repo and don't want to download the full repository so, you can get that from here [DownGit](https://minhaskamal.github.io/DownGit/#/home). Just paste the full url like https://github.com/Intersteller-AI/web-projects/tree/main/Frontend/project_you_want_to_download this and your folder will be downloaded.
+## <strong>NOTE</strong>: if you just need one folder from this repo and don't want to download the full repository so, you can get that from here [DownGit](https://minhaskamal.github.io/DownGit/#/home). Just paste the full url like this <code>/Intersteller-AI/web-projects/tree/main/Frontend/project_you_want_to_download</code> and your folder will be downloaded.
 
 ***
 
