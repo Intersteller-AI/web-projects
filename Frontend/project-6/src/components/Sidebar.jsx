@@ -110,7 +110,7 @@ const Sidebar = () => {
       <div style={{
         left: !openState.isOpen ? '-100%' : '0%'
       }}
-       className="w-[250px] px-2 h-[100vh] fixed bg-black sm:hidden block z-20 text-white overflow-y-auto hide-scrollbar transition-all duration-150">
+       className="w-[250px] px-2 h-[100vh] fixed bg-darkBlue sm:hidden block z-20 text-white overflow-y-auto hide-scrollbar transition-all duration-150">
         <div className="w-full flex justify-end px-3">
           <AiOutlineClose className="text-2xl my-6 hover:cursor-pointer" onClick={()=>{dispatch(actions.close())}}/>
         </div>
