@@ -143,7 +143,7 @@ const Profile = () => {
         style={{
           animation: !openProfile.isOpen ? 'slidedown 0.8s ease-in-out forwards' : 'slideup 0.8s ease-in-out forwards'
         }}
-        className={`w-[95vw] flex flex-col max-h-[120vh] rounded-lg drop-shadow-md bg-[#fffefe] absolute top-20 -translate-x-[50%] left-[50%] overflow-hidden`}
+        className={`w-[95vw] sm:hidden flex flex-col max-h-[120vh] rounded-lg drop-shadow-md bg-[#fffefe] absolute top-20 -translate-x-[50%] left-[50%] overflow-hidden`}
       >
         {/* profile section */}
         <div className="w-full flex flex-col items-center">
