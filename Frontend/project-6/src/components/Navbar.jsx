@@ -33,7 +33,7 @@ const Navbar = () => {
           style={{
             opacity: !openSearch ? "1" : "0",
           }}
-          className="w-full px-4 flex transition-all duration-300 items-end justify-center md:hidden rounded-lg overflow-hidden"
+          className={`${openSearch ? 'pointer-events-none' : 'pointer-events-all'} w-full px-4 flex transition-all duration-300 items-end justify-center md:hidden rounded-lg overflow-hidden`}
         >
           <input
             type="text"
