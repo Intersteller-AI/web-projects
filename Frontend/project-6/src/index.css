@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  font-family: gilroy;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.semi-donut-model-2 {
+  width: 140px;
+  height: 70px;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  border-radius: 150px 150px 0 0;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.semi-donut-model-2:before,
+.semi-donut-model-2:after {
+  content: '';
+  width: 140px;
+  height: 70px;
+  border: 10px solid #5788e4;
+  border-top: none;
+  position: absolute;
+  transform-origin: 50% 0% 0;
+  border-radius: 0 0 300px 300px;
+  box-sizing: border-box;
+  left: 0;
+  top: 100%;
+}
+
+.semi-donut-model-2:before {
+  border-color: rgba(0, 0, 0, .15);
+  transform: rotate(180deg);
+}
+
+.semi-donut-model-2:after {
+  z-index: 3;
+  animation: 1s fillGraphAnimation ease-in;
+  transform: rotate(calc(1deg * (var(--percentage) * 1.8)));
+}
+
+.semi-donut-model-2:hover:after {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@keyframes fillGraphAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+}
+
+.special-grad {
+  background: hsla(218, 74%, 58%, 1);
+
+  background: linear-gradient(-90deg, hsla(218, 74%, 58%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+  background: -moz-linear-gradient(-90deg, hsla(218, 74%, 58%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+  background: -webkit-linear-gradient(-90deg, hsla(218, 74%, 58%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+}
+
+.chartbox {
+  width: 292px;
+  height: 280px;
+  background-color: #fffefe;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.upto-top {
+  animation: slideup 0.8s ease-in-out linear;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  pointer-events: initial;
+  opacity: 1;
+}
+
+@keyframes slideup {
+  0%{
+    opacity: 0;
+    /* transform: translateY(25%) */
+    top: 25%;
+  }
+  100%{
+    opacity: 1;
+    /* transform: none */
+    top: 10%;
+  };
+}
+
+
+@keyframes slidedown {
+  0%{
+    opacity: 1;
+    /* transform: translateY(25%) */
+    top: 10%;
+  }
+  100%{
+    opacity: 0;
+    /* transform: none */
+    top: 25%;
+  };
+}
+
