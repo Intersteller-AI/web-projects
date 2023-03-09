@@ -37,7 +37,7 @@ const Navbar = () => {
         >
           <input
             type="text"
-            className={`${openSearch ? 'pointer-events-none' : 'pointer-events-auto'} w-full h-8 outline-none border-none flex items-center px-4 rounded-lg`}
+            className={`${openSearch ? 'pointer-events-none' : 'pointer-events-auto'} w-full h-8 outline-none border-none flex items-center px-4 rounded-md`}
             placeholder="Search"
           />
         </div>
