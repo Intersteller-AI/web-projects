@@ -62,7 +62,7 @@ const VideoDetail = () => {
       : demoChannelUrl
   );
 
-  const channelDetail = channelInfo?.items[0];
+  const channelDetail = channelInfo.items && channelInfo?.items[0];
 
   // console.log(videoDetail);
   // console.log(suggestedVideos);
