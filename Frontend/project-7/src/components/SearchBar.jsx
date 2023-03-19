@@ -33,10 +33,12 @@ const SearchBar = () => {
             setSearchTerm(e.target.value);
           }}
         />
+        <button className="" type="submit">
         <FiSearch
           className="text-[20px] w-10 hover:cursor-pointer"
           type="submit"
         />
+        </button>
       </form>
     </div>
   );
