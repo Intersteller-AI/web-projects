@@ -69,44 +69,10 @@ const CommentBox = ({ username, originalComment, likesCount, profilePic }) => (
     </div>
   </div>
 );
-
-const obj = {
-  kind: "youtube#commentThread",
-  id: "UgxLZiaduM_JkcFMVoJ4AaABAg",
-  snippet: {
-    videoId: "Y5fNfkGCDyU",
-    topLevelComment: {
-      kind: "youtube#comment",
-      id: "UgxLZiaduM_JkcFMVoJ4AaABAg",
-      snippet: {
-        videoId: "Y5fNfkGCDyU",
-        textDisplay: "Dat is it me artiste! I was waiting!!!🎉🎉🎉💙💙💙💙💙💙",
-        textOriginal:
-          "Dat is it me artiste! I was waiting!!!🎉🎉🎉💙💙💙💙💙💙",
-        authorDisplayName: "Doverine McKenzie",
-        authorProfileImageUrl:
-          "https://yt3.ggpht.com/ytc/AL5GRJUYvF-QPnsiNfSskVJSxeWwGJ3OatkDtsNH6zGAEQ=s48-c-k-c0x00ffffff-no-rj",
-        authorChannelUrl:
-          "http://www.youtube.com/channel/UC2tC5TTpv116yfEAq2FZu5g",
-        authorChannelId: {
-          value: "UC2tC5TTpv116yfEAq2FZu5g",
-        },
-        canRate: true,
-        viewerRating: "none",
-        likeCount: 0,
-        publishedAt: "2023-03-17T17:45:19Z",
-        updatedAt: "2023-03-17T17:45:19Z",
-      },
-    },
-    canReply: true,
-    totalReplyCount: 0,
-    isPublic: true,
-  },
-};
 const VideoDetail = () => {
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+   window.scrollTo(0, 0);
+  }, []);
 
   const navButt = useSelector((state) => state.menu);
   const [blockScroll, allowScroll] = useScrollBlock();
