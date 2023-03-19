@@ -38,6 +38,9 @@ export const youtubeApi = createApi({
       query: (id) =>
         `search?relatedToVideoId=${id}&part=contentDetails%2Csnippet%2Cstatistics&type=video&maxResults=50`,
     }),
+    getVideoComments: builder.query({
+      query: (id) => `commentThreads?part=snippet&videoId=${id}&maxResults=100`,
+    }),
   }),
 });
 
@@ -48,6 +51,7 @@ export const {
   useGetChannelVideosQuery,
   useGetVideosDetailsQuery,
   useGetSuggestedVideosQuery,
+  useGetVideoCommentsQuery,
 } = youtubeApi;
 
 // 596fc91dc5mshc53faa00e7b0b4cp1220c5jsn3f6abffe4ddb
