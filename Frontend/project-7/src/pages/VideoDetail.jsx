@@ -16,10 +16,12 @@ import {
   useGetChannelDetailsQuery,
   useGetSuggestedVideosQuery,
   useGetVideosDetailsQuery,
+  useGetVideoCommentsQuery,
 } from "../redux/fetchData";
 import { demoChannelUrl } from "../constants";
+import { profile } from "../assets";
 
-const SmartText = ({ text, length = 180 }) => {
+const SmartText = ({ text, length = 180 }, style) => {
   const [showLess, setShowLess] = useState(true);
 
   if (text?.length < length) {
@@ -29,6 +31,7 @@ const SmartText = ({ text, length = 180 }) => {
   return (
     <div>
       <p
+        style={style}
         dangerouslySetInnerHTML={{
           __html: showLess ? `${text?.slice(0, length)}...` : text,
         }}
@@ -43,11 +46,67 @@ const SmartText = ({ text, length = 180 }) => {
   );
 };
 
-const VideoDetail = () => {
+const CommentBox = ({ username, originalComment, likesCount, profilePic }) => (
+  <div className="w-full flex space-x-4 mt-4">
+    <div className="w-10 h-10 rounded-full overflow-hidden">
+      <img
+        className="w-full h-full object-cover object-top"
+        src={profilePic}
+        alt=""
+      />
+    </div>
+    <div className="flex-1">
+      <h2 className="font-medium text-[12px]">{username}</h2>
+      <SmartText text={originalComment} style={{ fontSize: "10px" }} />
+      <div className="flex items-center space-x-2">
+        <button className="flex items-center">
+          <BiLike className="mr-1" />
+          {likesCount}
+        </button>
+        <BiDislike />
+        <h2>reply</h2>
+      </div>
+    </div>
+  </div>
+);
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+const obj = {
+  kind: "youtube#commentThread",
+  id: "UgxLZiaduM_JkcFMVoJ4AaABAg",
+  snippet: {
+    videoId: "Y5fNfkGCDyU",
+    topLevelComment: {
+      kind: "youtube#comment",
+      id: "UgxLZiaduM_JkcFMVoJ4AaABAg",
+      snippet: {
+        videoId: "Y5fNfkGCDyU",
+        textDisplay: "Dat is it me artiste! I was waiting!!!🎉🎉🎉💙💙💙💙💙💙",
+        textOriginal:
+          "Dat is it me artiste! I was waiting!!!🎉🎉🎉💙💙💙💙💙💙",
+        authorDisplayName: "Doverine McKenzie",
+        authorProfileImageUrl:
+          "https://yt3.ggpht.com/ytc/AL5GRJUYvF-QPnsiNfSskVJSxeWwGJ3OatkDtsNH6zGAEQ=s48-c-k-c0x00ffffff-no-rj",
+        authorChannelUrl:
+          "http://www.youtube.com/channel/UC2tC5TTpv116yfEAq2FZu5g",
+        authorChannelId: {
+          value: "UC2tC5TTpv116yfEAq2FZu5g",
+        },
+        canRate: true,
+        viewerRating: "none",
+        likeCount: 0,
+        publishedAt: "2023-03-17T17:45:19Z",
+        updatedAt: "2023-03-17T17:45:19Z",
+      },
+    },
+    canReply: true,
+    totalReplyCount: 0,
+    isPublic: true,
+  },
+};
+const VideoDetail = () => {
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   const navButt = useSelector((state) => state.menu);
   const [blockScroll, allowScroll] = useScrollBlock();
@@ -64,12 +123,20 @@ const VideoDetail = () => {
   const { data: channelInfo } = useGetChannelDetailsQuery(
     videoDetail?.snippet?.channelId
   );
-
   const channelDetail = channelInfo?.items && channelInfo?.items[0];
+
+  const { data: commentsInfo } = useGetVideoCommentsQuery(id);
+  const commentsDetail = commentsInfo?.items && commentsInfo?.items;
+
+  // console.log(commentsDetail);
 
   // console.log(videoDetail);
   // console.log(suggestedVideos);
   // console.log(channelDetail);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   const convToMil = (labelValue) => {
     // Nine Zeroes for Billions
@@ -183,6 +250,44 @@ const VideoDetail = () => {
             <div className="w-11/12 border-[1px] border-slate-600"></div>
             <SmartText text={videoDetail?.snippet.description} />
           </div>
+          {/* comments */}
+          <div className="lg:w-[60vw] hidden w-[90vw] rounded-xl p-4 mt-6 lg:flex flex-col items-start overflow-hidden">
+            {/* user comment */}
+            <div className="flex w-full items-center justify-between space-x-2">
+              <div className="w-10 h-10 rounded-full overflow-hidden">
+                <img
+                  className="w-full h-full object-cover object-top"
+                  src={profile}
+                  alt=""
+                />
+              </div>
+              <form onSubmit={handleSubmit} className="flex-1" action="">
+                <input
+                  className="w-full outline-none bg-transparent border-b border-slate-500"
+                  type=""
+                  placeholder="Add a comment"
+                />
+              </form>
+            </div>
+            {/* public comments */}
+            <div className="w-full flex flex-col mt-4">
+              {commentsDetail?.map((val, index) => (
+                <CommentBox
+                  key={`${val}_${index}`}
+                  username={
+                    val?.snippet.topLevelComment.snippet.authorDisplayName
+                  }
+                  originalComment={
+                    val?.snippet.topLevelComment.snippet.textOriginal
+                  }
+                  profilePic={
+                    val?.snippet.topLevelComment.snippet.authorProfileImageUrl
+                  }
+                  likesCount={val?.snippet.topLevelComment.snippet.likeCount}
+                />
+              ))}
+            </div>
+          </div>
         </div>
         {/* playlist section */}
         <div className="flex flex-col items-start mt-4 lg:mt-0 lg:max-w-[450px] overflow-hidden w-full">
@@ -191,6 +296,44 @@ const VideoDetail = () => {
               {val?.id.videoId && <SideVideoCard video={val} />}
             </div>
           ))}
+        </div>
+        {/* comments */}
+        <div className="lg:hidden w-[90vw] rounded-xl p-4 mt-6 flex flex-col items-start overflow-hidden">
+          {/* user comment */}
+          <div className="flex w-full items-center justify-between space-x-2">
+            <div className="w-10 h-10 rounded-full overflow-hidden">
+              <img
+                className="w-full h-full object-cover object-top"
+                src={profile}
+                alt=""
+              />
+            </div>
+            <form onSubmit={handleSubmit} className="flex-1" action="">
+              <input
+                className="w-full outline-none bg-transparent border-b border-slate-500"
+                type=""
+                placeholder="Add a comment"
+              />
+            </form>
+          </div>
+          {/* public comments */}
+          <div className="w-full flex flex-col mt-4">
+            {commentsDetail?.map((val, index) => (
+              <CommentBox
+                key={`${val}_${index}`}
+                username={
+                  val?.snippet.topLevelComment.snippet.authorDisplayName
+                }
+                originalComment={
+                  val?.snippet.topLevelComment.snippet.textOriginal
+                }
+                profilePic={
+                  val?.snippet.topLevelComment.snippet.authorProfileImageUrl
+                }
+                likesCount={val?.snippet.topLevelComment.snippet.likeCount}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
