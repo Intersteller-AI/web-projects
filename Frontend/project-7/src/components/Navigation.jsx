@@ -5,7 +5,7 @@ import { MdOutlineSubscriptions } from "react-icons/md";
 import { AiOutlineSetting } from "react-icons/ai";
 
 const Navigation = () => {
-  var mobileFooter = (() => {
+  const mobileFooter = (() => {
     var d = document,
       i18n = { current: "current" },
       navs = d.querySelectorAll(".mobile-footer");
@@ -56,7 +56,12 @@ const Navigation = () => {
       l.style.width = a.offsetWidth + "px";
       l.style.left = a.offsetLeft + a.offsetWidth / 2 + "px";
     }
-  })();
+  });
+  
+  useEffect(() => {
+    mobileFooter();
+  }, [mobileFooter]);
+
 
   return (
     <div className="navigation">
