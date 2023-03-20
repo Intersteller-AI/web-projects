@@ -114,7 +114,7 @@ const ChannelDetail = () => {
                 : "video"
             }`}</h4>
           </div>
-          <h3 className="text-[16px] ss:mt-4 mt-2 max-w-[680px] text-slate-400">
+          <h3 className="text-[16px] overflow-hidden ss:mt-4 mt-2 max-w-[680px] text-slate-400">
             <SmartText text={ChannelDetail?.snippet.description} />
           </h3>
         </div>
