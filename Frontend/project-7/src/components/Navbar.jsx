@@ -69,7 +69,7 @@ const Navbar = () => {
           <IoIosNotifications />
         </div>
         <div className="flex justify-between sm:w-fit ss:w-[90vw] w-[95vw] h-full items-center">
-          <div className="sm:hidden block w-[30vw]">
+          <div className="sm:hidden block">
             {urlFinder.url === "/" ? (
               <Link
                 to="/"
@@ -77,7 +77,7 @@ const Navbar = () => {
                   dispatch(categoryActions.selectCategory("New Videos"));
                 }}
               >
-                <img src={logo} alt="" />
+                <img className="w-[30vw]" src={logo} alt="" />
               </Link>
             ) : (
               <Link
