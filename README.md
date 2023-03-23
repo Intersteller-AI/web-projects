@@ -3,7 +3,6 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=intersteller-ai&label=Profile%20views&color=0e75b6&style=flat" alt="intersteller-ai" /> </p>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=intersteller-ai" alt="intersteller-ai" /></a> </p>
 
 - 🌱 I’m currently learning **Nodejs, Nextjs and Deep Learning with Pytorch**
 
