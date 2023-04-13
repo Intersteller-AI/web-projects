@@ -20,7 +20,7 @@ const Navbar = () => {
     <div className="gpt3__navbar">
       <div className="gpt3__navbar-links">
         <div className="gpt3__navbar-links_logo">
-          <img src={logo} alt='logo' />
+            <h1>b=BayMed</h1>
         </div>
         <div className="gpt3__navbar-links_container">
         <Menu/>
@@ -38,10 +38,6 @@ const Navbar = () => {
           <div className="gpt3__navbar-menu_container scale-up-center">
             <div className="gpt3__navbar-menu_container-links">
             <Menu/>
-            </div>
-            <div className="gpt3__navbar-menu_container-links-sign">
-              <p>Sign in</p>
-              <button type="button">Sign up</button>
             </div>
           </div>
         )}
